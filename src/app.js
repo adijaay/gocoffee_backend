@@ -73,6 +73,10 @@ app.get("/socket-status", (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 // Store io instance in app for access elsewhere
 app.set("io", io);
 
