@@ -17,12 +17,12 @@ const Merchant = sequelize.define("Merchant", {
   },
   stock: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     defaultValue: 0,
   },
   price: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     defaultValue: 0,
   },
   status: {
