@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "go-coffee-app",
+  "private_key_id": "bcbf5b1194de28c5a3b35ca86860d179bfea448b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDRBTZiRfrPOJT7\nsXuHov9BpWHEOB0eS7pgSXLJmrCTznCx7rMZ/qtRz8LfQepBwbblV2/eNqEPvfZC\nu6PicPjMwmxuxyC69Lb50FNSKz+E+i6WgVz03iR6JkUsmlX3F2LugfdroW64oJq5\n1NHX4i5tE2n+0ot2ZBN+adEihjlo9rL53FMGCqrrcQ7ebhW0wg7NDGE85qbC/Bmn\n+7Sc9gnkO1+zDewllwS4YLb9c+8zRiTM3e7tSaawvdQrbZFRrTfsDEKPR9mYwinV\nEH//MEdYqFKrxCQELx0LoPGfdkoKzyZV7U0PxM+LqGEK07x8WMVTK2STtMeL54yz\nOYuKj+ZDAgMBAAECggEAHNiXz0syGGwKH4w4bJkhmhktW2uVFSvFTmmEhm8rRFK+\nucej/wfm89T042PQ5P9Lcu40uZmXc7k3JbGIpgUKSRPh7A3eJf8Ey4glH5dpXjw6\ntrmmrwKDTTo/3K52A7I+DIVyNG/kfGVpxRCqXx1PY+1EeQ7sgUvBZvZKjvWwMZxu\nM5chKu90XPtoXexQ4lA3BEZPdCM/AbSz/j7WPySFsGXmr9B530Jj/y2+fqH9iFru\nJ3Tin39iKNGA0Odgoz4Xdn5FUshnjrZ32lHKolrjx6d313yfvO6UIm4S/0RVb70q\ncUYhEIS09GJE+sw7h6Xs5uHBx4NLHphSEnN4u2SwYQKBgQD8MwXmZBhd1ntd8oQS\nBbgupXmJ4Ie+ri9AOYqfseUdIvjnmUHROdujGy7rN8Z0YnaXM3uQ0SaX574zRFpn\nx6/x2KiH8gM5Nh1ASy3vUebiPJnwBLqLkvkYezkYmaBCzQGOWDlY0ZNumwln85eO\nndshmp5rsEUQ2QaLuZRIHfVAIwKBgQDUK5s7euIA37J44ih1pev2apbh4J4pvCFj\npMqJzV35c6VrVE/tlaLrQcABy3dimwTkhoSoAIo1g56gDl7DLCOpuCS21YuMRYvj\npKSQwfZjYbweU6OmhaqLqUPnMZXe0g8kTFEQD+So/IflAb73CFN6g9fcgWp1nZ+6\nmj54baATYQKBgF28AQdeUIgf/X4vctLX+Vqs+f06zHkceEdgm5s7HTK1GtnJZmMD\nJBT9N3UJJ+N97SHJarWqZrOy2EhpsUg9ObGjmw/b7ULIUBrjVlFKmYughn5k44iY\nuahVtCTmhGAPnfJv6/CNBETprpdKPBwvo5BbzWGtBB586yfnc6tSJyMNAoGASnXj\nTMSbfGMFZ5c3S9KnNRvDSBJkb5EuxqGW0zXXvSvw6fH0+xSA0L+KexbFFz4AQZNU\nCwHlf1Jp4RIp/6UF/xI5EFFxYBEoPwQRHRx1M/ug4aPI0zAl4k3NHt4wErr1xW9j\nI5fwT74QkzZBpsCtS1np7+EbU5u16u8m7WzLuQECgYA7uCyTfg0B6nW7/lEh81LO\nOiZvobHuFxSx0I5cW7QB0cQo1P4YcVC9SVmHewgIj8yoewQJ+JWWG8OvmPc4Jt6I\n8Ae7Ad3sEbjdS6dcAzzLKHTazwdUmi88cNT/gNBEjVdN5iwiHcWZYgh4d0LaiYTH\nXRs3dvUgG5YkBd9IsUZcMQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-rlm90@go-coffee-app.iam.gserviceaccount.com",
+  "client_id": "104474908892370219651",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-rlm90%40go-coffee-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
