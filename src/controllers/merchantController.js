@@ -225,13 +225,10 @@ exports.getNearbyMerchantsFunction = async (req) => {
       distance
 `;
 
-    const sequelize = new Sequelize(
-      "mysql://starlink:star123@localhost/db_starlink",
-      {
-        dialect: "mysql",
-        logging: console.log, // Disable logging (you can enable it for debugging)
-      }
-    );
+    const sequelize = new Sequelize(process.env.MYSQL_ROUTE, {
+      dialect: "mysql",
+      logging: console.log, // Disable logging (you can enable it for debugging)
+    });
 
     // console.log(query, latitude, longitude, stock, radius);
     var result = await sequelize.query(query, {
