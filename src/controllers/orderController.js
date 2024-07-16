@@ -4,6 +4,7 @@ const { User } = require("../models/user");
 const merchantController = require("../controllers/merchantController");
 const notifController = require("../firebase/controllers/notificationController");
 const userController = require("../controllers/userController");
+const { Sequelize } = require("sequelize");
 
 // exports.createOrder = async (req, res) => {
 //   try {
@@ -220,7 +221,12 @@ exports.getOrderByUserID = async (req, res) => {
   const id = req.params.id;
   try {
     const orders = await Order.findAll({
-      where: { userID: id, merchantID: !null },
+      where: {
+        userID: id,
+        merchantID: {
+          [Sequelize.Op.ne]: null,
+        },
+      },
       order: [["done_at", "DESC"]],
       include: [
         {
