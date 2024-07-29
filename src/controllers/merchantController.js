@@ -107,6 +107,19 @@ exports.updateMerchant = async (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     });
+  const coffeeIDs = req.body.coffeeID;
+
+  if (Array.isArray(coffeeIDs) && coffeeIDs.length > 0) {
+    for (let i = 0; i < coffeeIDs.length; i++) {
+      await this.updateCoffeeToMerchant(
+        { body: { coffeeID: coffeeIDs[i], merchantID: id } },
+        res
+      );
+    }
+  } else if (Array.isArray(coffeeIDs) && coffeeIDs.length === 0) {
+    // Handle the case where coffeeID array is empty, if needed
+    console.log("No coffee IDs to process.");
+  }
 };
 
 exports.deleteMerchant = (req, res) => {
@@ -128,78 +141,6 @@ exports.getNearbyMerchants = async (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     });
-  //   console.log(req.body, req.query);
-  //   const { lat, long, stock } = req.body;
-  //   const radius = req.query.radius ? req.query.radius : 5;
-  //   console.log(lat, long, stock, radius);
-
-  //   try {
-  //     const latitude = parseFloat(lat);
-  //     const longitude = parseFloat(long);
-  //     const query = `
-  //     SELECT
-  //       m.id,
-  //       m.userID,
-  //       u.name,
-  //       m.avatar,
-  //       m.longitude,
-  //       m.latitude,
-  //       ROUND((6371 * acos(cos(radians(:lat)) * cos(radians(m.latitude)) * cos(radians(m.longitude) - radians(:long)) + sin(radians(:lat)) * sin(radians(m.latitude)))) * 100) / 100 AS distance
-  //     FROM
-  //       Merchants
-  //     AS m
-  //     JOIN
-  //       Users
-  //     AS u
-  //     ON
-  //       m.userID = u.id
-  //     WHERE
-  //       m.stock >= :stock
-  //     HAVING
-  //       distance <= :radius
-  //     ORDER BY
-  //       distance
-  // `;
-
-  //     const sequelize = new Sequelize(
-  //       "mysql://starlink:star123@localhost/db_starlink",
-  //       {
-  //         dialect: "mysql",
-  //         logging: console.log, // Disable logging (you can enable it for debugging)
-  //       }
-  //     );
-
-  //     // console.log(query, latitude, longitude, stock, radius);
-  //     var result = await sequelize.query(query, {
-  //       replacements: { lat: latitude, long: longitude, stock, radius },
-  //       type: Sequelize.QueryTypes.SELECT,
-  //     });
-
-  //     let count = 0;
-
-  //     while (result.length == 0 && count < 3) {
-  //       result = await sequelize.query(query, {
-  //         replacements: {
-  //           lat: latitude,
-  //           long: longitude,
-  //           stock,
-  //           radiusInc: radius + 5,
-  //         },
-  //         type: Sequelize.QueryTypes.SELECT,
-  //       });
-  //       count++;
-  //     }
-
-  //     if (result.length === 0) {
-  //       console.log("Merchants not found in " + radius + "km radius");
-  //       res.status(404).send("Merchants not found in " + radius + "km radius");
-  //     } else {
-  //       console.log(result);
-  //       res.send(result);
-  //     }
-  //   } catch (error) {
-  //     res.status(400).send(error);
-  //   }
 };
 
 const sequelize = new Sequelize(process.env.MYSQL_ROUTE, {
@@ -267,7 +208,6 @@ exports.getNearbyMerchantsFunction = async (req) => {
         coffeeCount,
       };
     } else {
-      // Query without coffee filter
       query = `
         SELECT 
           m.id AS merchantID,
@@ -357,18 +297,16 @@ exports.updateCoffeeToMerchant = async (req, res) => {
       },
     });
     if (dataOld) {
-      return res
-        .status(400)
-        .send({ message: "Coffee already added to Merchant" });
+      return { message: "Coffee already added to Merchant" };
     } else {
       await merchantCoffee.create({
         merchantID: req.body.merchantID,
         coffeeID: req.body.coffeeID,
       });
-      res.send("Coffee added to Merchant");
+      return "Coffee added to Merchant";
     }
   } catch (error) {
-    res.status(400).send(error);
+    return error;
   }
 };
 

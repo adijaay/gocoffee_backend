@@ -65,11 +65,6 @@ router.post(
   MerchantController.deleteCoffeeFromMerchant
 );
 router.post(
-  "/merchant/addcoffee",
-  userController.verifyMerchantToken,
-  MerchantController.updateCoffeeToMerchant
-);
-router.post(
   "/order/create",
   userController.verifyToken,
   OrderController.createOrder
