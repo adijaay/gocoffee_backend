@@ -181,7 +181,7 @@ exports.getNearbyMerchantsFunction = async (req) => {
         JOIN
           Users AS u ON m.userID = u.id
         JOIN
-          MerchantCoffees AS mc ON m.id = mc.merchantID
+          merchantCoffees AS mc ON m.id = mc.merchantID
         WHERE 
           m.stock >= :stock
         AND
