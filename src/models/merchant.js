@@ -1,6 +1,7 @@
 // models/user.js
 const { Sequelize, DataTypes } = require("sequelize");
 const { User } = require("./user");
+const { merchantCoffee } = require("./merchantCoffee");
 
 // Sequelize connection
 const sequelize = new Sequelize(process.env.MYSQL_ROUTE, {
@@ -63,6 +64,11 @@ const Merchant = sequelize.define("Merchant", {
 Merchant.belongsTo(User, {
   foreignKey: "userID",
   targetKey: "id",
+});
+
+Merchant.hasMany(merchantCoffee, {
+  foreignKey: "merchantID",
+  sourceKey: "id",
 });
 
 module.exports = { Merchant, sequelize };

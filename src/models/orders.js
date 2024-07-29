@@ -40,6 +40,10 @@ const Order = sequelize.define("Order", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  coffee_requested: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   done_at: {
     type: DataTypes.DATE,
     allowNull: true,

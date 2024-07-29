@@ -5,6 +5,7 @@ const merchantController = require("../controllers/merchantController");
 const notifController = require("../firebase/controllers/notificationController");
 const userController = require("../controllers/userController");
 const { Sequelize } = require("sequelize");
+const { Coffee } = require("../models/coffee");
 
 // exports.createOrder = async (req, res) => {
 //   try {
@@ -100,6 +101,22 @@ exports.createOrder = async (req, res) => {
 
     req.body.merchantID = null;
 
+    const CoffeeData = await Coffee.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.in]: req.body.coffeeID,
+        },
+      },
+    }).then((data) => {
+      const cleanData = data.map((coffee) => coffee.dataValues.name);
+      return cleanData;
+    });
+    if (CoffeeData.length !== req.body.coffeeID.length) {
+      return res.status(400).send({ message: "Invalid coffee ID" });
+    }
+
+    req.body.coffee_requested = CoffeeData.join(", ");
+
     const addOrder = await Order.create(req.body);
 
     order = await Order.findByPk(addOrder.dataValues.id, {
@@ -115,6 +132,7 @@ exports.createOrder = async (req, res) => {
       lat: order.dataValues.latitude_buyer,
       long: order.dataValues.longitude_buyer,
       stock: order.dataValues.amount,
+      coffee: req.body.coffeeID,
     };
 
     const merchants = await merchantController.getNearbyMerchantsFunction(

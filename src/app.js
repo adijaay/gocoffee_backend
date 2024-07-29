@@ -7,6 +7,10 @@ const { Server } = require("socket.io");
 const { sequelize: sequelizeUser } = require("./models/user");
 const { sequelize: sequelizeMerchant } = require("./models/merchant");
 const { sequelize: sequelizeOrder } = require("./models/orders");
+const { sequelize: sequelizeCoffee } = require("./models/coffee");
+const {
+  sequelize: sequelizeMerchantCoffee,
+} = require("./models/merchantCoffee");
 const listEndpoints = require("express-list-endpoints");
 
 const cors = require("cors");
@@ -43,6 +47,8 @@ sequelizeUser
       sequelizeUser.sync({ force: false }),
       sequelizeMerchant.sync({ force: false }),
       sequelizeOrder.sync({ force: false }),
+      sequelizeCoffee.sync({ force: false }),
+      sequelizeMerchantCoffee.sync({ force: false }),
     ]);
   })
   .then(() => {

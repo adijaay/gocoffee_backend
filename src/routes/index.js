@@ -2,6 +2,7 @@ const express = require("express");
 const userController = require("../controllers/userController");
 const MerchantController = require("../controllers/merchantController");
 const OrderController = require("../controllers/orderController");
+const coffeeController = require("../controllers/coffeeController");
 const multer = require("multer");
 
 const router = express.Router();
@@ -59,6 +60,16 @@ router.post(
   MerchantController.getNearbyMerchants
 );
 router.post(
+  "/merchant/deleteCoffee",
+  userController.verifyMerchantToken,
+  MerchantController.deleteCoffeeFromMerchant
+);
+router.post(
+  "/merchant/addcoffee",
+  userController.verifyMerchantToken,
+  MerchantController.updateCoffeeToMerchant
+);
+router.post(
   "/order/create",
   userController.verifyToken,
   OrderController.createOrder
@@ -93,5 +104,8 @@ router.get(
   userController.verifyToken,
   OrderController.getOrderByID
 );
+router.get("/coffee", coffeeController.getAllCoffee);
+router.post("/coffee", coffeeController.addCoffee);
+router.post("/coffee/delete/:id", coffeeController.deleteCoffee);
 
 module.exports = router;
