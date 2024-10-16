@@ -58,6 +58,43 @@ INSERT INTO `coffees` (`id`, `name`, `image_link`, `type`, `desc`, `createdAt`, 
 UNLOCK TABLES;
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `salt` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone_number` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `type` enum('user','merchant') NOT NULL DEFAULT 'user',
+  `verified` tinyint(1) NOT NULL DEFAULT 1,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Dumping data for table `users`
+--
+LOCK TABLES `users` WRITE;
+
+INSERT INTO `users` (`id`, `name`, `password`, `salt`, `email`, `phone_number`, `token`, `type`, `verified`, `createdAt`, `updatedAt`) VALUES
+(1, 'toko kopi', '893fdf15ce:196c3c573511078e60e5c0dc802296649aa285b3', '893fdf15ce', 'jaymerch@mail.com', '085', 'cmcoGbnPRjWVwhjh4yhD9q:APA91bFVbeHyrCKPIugYZO4dzu4Qesir8RmLUM34oWgwtmS4-kOMhAcmXx5_IznLLxc49d-PKCdSb5z7ORFfavixktL3f5wihQ1vSei8BANjyeLVvfyE_koA7tjUKNi7WRgNNaS-968m', 'merchant', 1, '2024-07-12 06:04:52', '2024-10-16 01:45:21'),
+(2, 'humam', '34392e700e:a8c9b374f69f49a67127c756b1d4004235226a1a', '34392e700e', 'humam@mail.com', '085', 'dO1fFCYLRIaY2Zskl6GRCl:APA91bH8dOMzkYTOOJZHKq8l0ZmDBm5uGWbw5f34YY0Fv4tAZFu-O0-4vP4S5_BcmITWX4ZQbL7p3auOLKNL0s6yVy9k0W5DgDsfIfAQG43oJak3i1lyT19-wD6SXKI0wOqlSdZwW2xL', 'user', 1, '2024-07-12 06:05:20', '2024-09-14 08:04:54'),
+(3, 'afif', 'e69d9189de:dce9fabeb6969e025df18f8cf6e190bbd8b7cec0', 'e69d9189de', 'afif@mail.com', '0812345678', 'ftob7WyQRou-aKG5rG-wkl:APA91bGglmqcvM_vLFIRp1d7p7GeGaUGd2dBM87tv8auuaF5Rr1M2sHuk5XR7K18616aGZolTBFJSWsvwnoT1fdZGUHoRMCs9XUAeE1j5WVVATKkSkw_615kTot2kU8fDt_4F1bS99di', 'merchant', 1, '2024-07-12 08:58:06', '2024-09-24 16:29:14'),
+(4, 'wahyu', '02f1c4fea1:a6d1c122ed89c973a1ad76e6b2155586218181f4', '02f1c4fea1', 'wahyu@mail.com', '0856431297', 'ftob7WyQRou-aKG5rG-wkl:APA91bGglmqcvM_vLFIRp1d7p7GeGaUGd2dBM87tv8auuaF5Rr1M2sHuk5XR7K18616aGZolTBFJSWsvwnoT1fdZGUHoRMCs9XUAeE1j5WVVATKkSkw_615kTot2kU8fDt_4F1bS99di', 'user', 1, '2024-07-12 09:22:42', '2024-08-06 08:59:50'),
+(5, 'adi', '6a134faca1:ace71b37abe65db32b92a7033378508185fe7afd', '6a134faca1', 'adi@mail.com', '085', 'cBB1fxNBRSeq7HDNtezpMc:APA91bHWOE56zi3tgph8yJj7wrhmgEPoLbRbheI4QCl36fW0mfqeZg1ANUDyWFmlxI71c4_9VmAH14rzuRDiB8rN3HQ4q3Ju8EhAeAVt5Q0HdlKt96IZHRzJZou2VEBi2irWbLqpPLmg', 'user', 1, '2024-07-12 11:52:42', '2024-07-16 14:07:53'),
+(6, 'mas adi', '8b742ecb88:2028034fc4b9ef3cccf71f9f9a9c2d406ecc5463', '8b742ecb88', 'masadi@mail.com', '08971231', 'cL5zgUocTTqcW0o0WB75FR:APA91bHsHVxh-uB6QmQ-_OGEx0ReBn7lxBW4txgRePOTka2ZaxcOvQcDzFuqQKhTLvjfUgsRxYnNMWriZDWN9Wd7XipfKeIG97wmOPcUydvJy5roY3Vuxj_0RhERHBsGwzEAQ4esmOdf', 'user', 0, '2024-07-16 13:47:32', '2024-10-16 10:29:37'),
+(7, 'byan', '4d95f0c14e:1aa39a317bf7ae77a04fe114f8b13b2d1e3717b7', '4d95f0c14e', 'byan@mail.com', '08123456321', 'eYD1FnSVSlWdfX1PpJtcHp:APA91bFNGpn-0NzezVFQOtzCU6qT__KxQueIaMbqZmBY3GqKQyUT5L7LWvCuthCtkkP7cME8n8VSKQIxvox-oCLrcmAkQsx35brCuXLBo_4fP_bYgZhoHqr-rhirkoKC0MJdadoF5-3-', 'user', 0, '2024-07-20 03:58:57', '2024-10-16 10:29:36'),
+(8, 'admin', '1e68031b60:b59f2efec6fff4b2d2874e3bbc1d87e8934ab1d5', '1e68031b60', 'admin@mail.com', '085075625', 'cmcoGbnPRjWVwhjh4yhD9q:APA91bFVbeHyrCKPIugYZO4dzu4Qesir8RmLUM34oWgwtmS4-kOMhAcmXx5_IznLLxc49d-PKCdSb5z7ORFfavixktL3f5wihQ1vSei8BANjyeLVvfyE_koA7tjUKNi7WRgNNaS-968m', 'admin', 1, '2024-10-11 03:05:26', '2024-10-15 10:35:52');
+UNLOCK TABLES;
 
 --
 -- Table structure for table `merchants`
@@ -227,43 +264,6 @@ UNLOCK TABLES;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `salt` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone_number` varchar(255) NOT NULL,
-  `token` varchar(255) DEFAULT NULL,
-  `type` enum('user','merchant') NOT NULL DEFAULT 'user',
-  `verified` tinyint(1) NOT NULL DEFAULT 1,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
-
-
---
--- Dumping data for table `users`
---
-LOCK TABLES `users` WRITE;
-
-INSERT INTO `users` (`id`, `name`, `password`, `salt`, `email`, `phone_number`, `token`, `type`, `verified`, `createdAt`, `updatedAt`) VALUES
-(1, 'toko kopi', '893fdf15ce:196c3c573511078e60e5c0dc802296649aa285b3', '893fdf15ce', 'jaymerch@mail.com', '085', 'cmcoGbnPRjWVwhjh4yhD9q:APA91bFVbeHyrCKPIugYZO4dzu4Qesir8RmLUM34oWgwtmS4-kOMhAcmXx5_IznLLxc49d-PKCdSb5z7ORFfavixktL3f5wihQ1vSei8BANjyeLVvfyE_koA7tjUKNi7WRgNNaS-968m', 'merchant', 1, '2024-07-12 06:04:52', '2024-10-16 01:45:21'),
-(2, 'humam', '34392e700e:a8c9b374f69f49a67127c756b1d4004235226a1a', '34392e700e', 'humam@mail.com', '085', 'dO1fFCYLRIaY2Zskl6GRCl:APA91bH8dOMzkYTOOJZHKq8l0ZmDBm5uGWbw5f34YY0Fv4tAZFu-O0-4vP4S5_BcmITWX4ZQbL7p3auOLKNL0s6yVy9k0W5DgDsfIfAQG43oJak3i1lyT19-wD6SXKI0wOqlSdZwW2xL', 'user', 1, '2024-07-12 06:05:20', '2024-09-14 08:04:54'),
-(3, 'afif', 'e69d9189de:dce9fabeb6969e025df18f8cf6e190bbd8b7cec0', 'e69d9189de', 'afif@mail.com', '0812345678', 'ftob7WyQRou-aKG5rG-wkl:APA91bGglmqcvM_vLFIRp1d7p7GeGaUGd2dBM87tv8auuaF5Rr1M2sHuk5XR7K18616aGZolTBFJSWsvwnoT1fdZGUHoRMCs9XUAeE1j5WVVATKkSkw_615kTot2kU8fDt_4F1bS99di', 'merchant', 1, '2024-07-12 08:58:06', '2024-09-24 16:29:14'),
-(4, 'wahyu', '02f1c4fea1:a6d1c122ed89c973a1ad76e6b2155586218181f4', '02f1c4fea1', 'wahyu@mail.com', '0856431297', 'ftob7WyQRou-aKG5rG-wkl:APA91bGglmqcvM_vLFIRp1d7p7GeGaUGd2dBM87tv8auuaF5Rr1M2sHuk5XR7K18616aGZolTBFJSWsvwnoT1fdZGUHoRMCs9XUAeE1j5WVVATKkSkw_615kTot2kU8fDt_4F1bS99di', 'user', 1, '2024-07-12 09:22:42', '2024-08-06 08:59:50'),
-(5, 'adi', '6a134faca1:ace71b37abe65db32b92a7033378508185fe7afd', '6a134faca1', 'adi@mail.com', '085', 'cBB1fxNBRSeq7HDNtezpMc:APA91bHWOE56zi3tgph8yJj7wrhmgEPoLbRbheI4QCl36fW0mfqeZg1ANUDyWFmlxI71c4_9VmAH14rzuRDiB8rN3HQ4q3Ju8EhAeAVt5Q0HdlKt96IZHRzJZou2VEBi2irWbLqpPLmg', 'user', 1, '2024-07-12 11:52:42', '2024-07-16 14:07:53'),
-(6, 'mas adi', '8b742ecb88:2028034fc4b9ef3cccf71f9f9a9c2d406ecc5463', '8b742ecb88', 'masadi@mail.com', '08971231', 'cL5zgUocTTqcW0o0WB75FR:APA91bHsHVxh-uB6QmQ-_OGEx0ReBn7lxBW4txgRePOTka2ZaxcOvQcDzFuqQKhTLvjfUgsRxYnNMWriZDWN9Wd7XipfKeIG97wmOPcUydvJy5roY3Vuxj_0RhERHBsGwzEAQ4esmOdf', 'user', 0, '2024-07-16 13:47:32', '2024-10-16 10:29:37'),
-(7, 'byan', '4d95f0c14e:1aa39a317bf7ae77a04fe114f8b13b2d1e3717b7', '4d95f0c14e', 'byan@mail.com', '08123456321', 'eYD1FnSVSlWdfX1PpJtcHp:APA91bFNGpn-0NzezVFQOtzCU6qT__KxQueIaMbqZmBY3GqKQyUT5L7LWvCuthCtkkP7cME8n8VSKQIxvox-oCLrcmAkQsx35brCuXLBo_4fP_bYgZhoHqr-rhirkoKC0MJdadoF5-3-', 'user', 0, '2024-07-20 03:58:57', '2024-10-16 10:29:36'),
-(8, 'admin', '1e68031b60:b59f2efec6fff4b2d2874e3bbc1d87e8934ab1d5', '1e68031b60', 'admin@mail.com', '085075625', 'cmcoGbnPRjWVwhjh4yhD9q:APA91bFVbeHyrCKPIugYZO4dzu4Qesir8RmLUM34oWgwtmS4-kOMhAcmXx5_IznLLxc49d-PKCdSb5z7ORFfavixktL3f5wihQ1vSei8BANjyeLVvfyE_koA7tjUKNi7WRgNNaS-968m', 'admin', 1, '2024-10-11 03:05:26', '2024-10-15 10:35:52');
-UNLOCK TABLES;
 
 --
 -- Table structure for table `merchantcoffees`
