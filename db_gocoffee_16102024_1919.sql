@@ -77,7 +77,7 @@ CREATE TABLE `merchants` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
-  CONSTRAINT `Merchants_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Users` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `merchants_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 
@@ -117,8 +117,8 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
   KEY `merchantID` (`merchantID`),
-  CONSTRAINT `Orders_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Users` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `Orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `Merchants` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -279,8 +279,8 @@ CREATE TABLE `merchantCoffees` (
   PRIMARY KEY (`id`),
   KEY `merchantID` (`merchantID`),
   KEY `coffeeID` (`coffeeID`),
-  CONSTRAINT `merchantCoffees_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `Merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `merchantCoffees_ibfk_2` FOREIGN KEY (`coffeeID`) REFERENCES `Coffees` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `merchantCoffees_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `merchantCoffees_ibfk_2` FOREIGN KEY (`coffeeID`) REFERENCES `coffees` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4;
 
 --
