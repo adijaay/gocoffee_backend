@@ -270,7 +270,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `merchantcoffees`;
-CREATE TABLE `merchantCoffees` (
+CREATE TABLE `merchantcoffees` (
   `id` int NOT NULL AUTO_INCREMENT,
   `merchantID` int NOT NULL,
   `coffeeID` int NOT NULL,
@@ -286,7 +286,7 @@ CREATE TABLE `merchantCoffees` (
 --
 -- Dumping data for table `merchantcoffees`
 --
-LOCK TABLES `merchantCoffees` WRITE;
+LOCK TABLES `merchantcoffees` WRITE;
 INSERT INTO `merchantcoffees` (`id`, `merchantID`, `coffeeID`, `createdAt`, `updatedAt`) VALUES
 (17, 1, 2, '2024-07-29 08:45:44', '2024-07-29 08:45:44'),
 (18, 1, 3, '2024-07-29 08:45:44', '2024-07-29 08:45:44'),
