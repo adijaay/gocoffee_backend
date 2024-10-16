@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coffees`
+-- Table structure for table `Coffees`
 --
 
-DROP TABLE IF EXISTS `coffees`;
-CREATE TABLE `coffees` (
+DROP TABLE IF EXISTS `Coffees`;
+CREATE TABLE `Coffees` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `image_link` varchar(255) NOT NULL,
@@ -41,12 +41,12 @@ CREATE TABLE `coffees` (
 
 
 --
--- Dumping data for table `coffees`
+-- Dumping data for table `Coffees`
 --
 
-LOCK TABLES `coffees` WRITE;
+LOCK TABLES `Coffees` WRITE;
 
-INSERT INTO `coffees` (`id`, `name`, `image_link`, `type`, `desc`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Coffees` (`id`, `name`, `image_link`, `type`, `desc`, `createdAt`, `updatedAt`) VALUES
 (2, 'Latte', 'https://images.unsplash.com/photo-1543256840-0709ad5d3726?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29mZmVlJTIwcGhvdG9ncmFwaHl8ZW58MHx8MHx8fDA%3D', 'modern', 'Minuman kopi yang dibuat dengan espresso dan susu yang dikukus.', '2024-07-29 05:19:50', '2024-07-29 05:19:50'),
 (3, 'Cappuccino', 'https://somedayilllearn.com/wp-content/uploads/2020/05/cup-of-black-coffee-scaled-720x540.jpeg', 'modern', 'Minuman kopi berbasis espresso dengan busa susu di atasnya.', '2024-07-29 05:22:02', '2024-07-29 05:22:02'),
 (4, 'Americano', 'https://www.allrecipes.com/thmb/Hqro0FNdnDEwDjrEoxhMfKdWfOY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21667-easy-iced-coffee-ddmfs-4x3-0093-7becf3932bd64ed7b594d46c02d0889f.jpg', 'modern', 'Espresso yang dicampur dengan air panas untuk menghasilkan rasa kopi yang lebih ringan.', '2024-07-29 05:22:59', '2024-07-29 05:22:59'),
@@ -59,11 +59,11 @@ UNLOCK TABLES;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE `Users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -81,11 +81,11 @@ CREATE TABLE `users` (
 
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Users`
 --
-LOCK TABLES `users` WRITE;
+LOCK TABLES `Users` WRITE;
 
-INSERT INTO `users` (`id`, `name`, `password`, `salt`, `email`, `phone_number`, `token`, `type`, `verified`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Users` (`id`, `name`, `password`, `salt`, `email`, `phone_number`, `token`, `type`, `verified`, `createdAt`, `updatedAt`) VALUES
 (1, 'toko kopi', '893fdf15ce:196c3c573511078e60e5c0dc802296649aa285b3', '893fdf15ce', 'jaymerch@mail.com', '085', 'cmcoGbnPRjWVwhjh4yhD9q:APA91bFVbeHyrCKPIugYZO4dzu4Qesir8RmLUM34oWgwtmS4-kOMhAcmXx5_IznLLxc49d-PKCdSb5z7ORFfavixktL3f5wihQ1vSei8BANjyeLVvfyE_koA7tjUKNi7WRgNNaS-968m', 'merchant', 1, '2024-07-12 06:04:52', '2024-10-16 01:45:21'),
 (2, 'humam', '34392e700e:a8c9b374f69f49a67127c756b1d4004235226a1a', '34392e700e', 'humam@mail.com', '085', 'dO1fFCYLRIaY2Zskl6GRCl:APA91bH8dOMzkYTOOJZHKq8l0ZmDBm5uGWbw5f34YY0Fv4tAZFu-O0-4vP4S5_BcmITWX4ZQbL7p3auOLKNL0s6yVy9k0W5DgDsfIfAQG43oJak3i1lyT19-wD6SXKI0wOqlSdZwW2xL', 'user', 1, '2024-07-12 06:05:20', '2024-09-14 08:04:54'),
 (3, 'afif', 'e69d9189de:dce9fabeb6969e025df18f8cf6e190bbd8b7cec0', 'e69d9189de', 'afif@mail.com', '0812345678', 'ftob7WyQRou-aKG5rG-wkl:APA91bGglmqcvM_vLFIRp1d7p7GeGaUGd2dBM87tv8auuaF5Rr1M2sHuk5XR7K18616aGZolTBFJSWsvwnoT1fdZGUHoRMCs9XUAeE1j5WVVATKkSkw_615kTot2kU8fDt_4F1bS99di', 'merchant', 1, '2024-07-12 08:58:06', '2024-09-24 16:29:14'),
@@ -97,11 +97,11 @@ INSERT INTO `users` (`id`, `name`, `password`, `salt`, `email`, `phone_number`, 
 UNLOCK TABLES;
 
 --
--- Table structure for table `merchants`
+-- Table structure for table `Merchants`
 --
 
-DROP TABLE IF EXISTS `merchants`;
-CREATE TABLE `merchants` (
+DROP TABLE IF EXISTS `Merchants`;
+CREATE TABLE `Merchants` (
   `id` int NOT NULL AUTO_INCREMENT,
   `stock` int DEFAULT '0',
   `price` int DEFAULT '0',
@@ -114,16 +114,16 @@ CREATE TABLE `merchants` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
-  CONSTRAINT `merchants_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `merchants_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 
 --
--- Dumping data for table `merchants`
+-- Dumping data for table `Merchants`
 --
-LOCK TABLES `merchants` WRITE;
+LOCK TABLES `Merchants` WRITE;
 
-INSERT INTO `merchants` (`id`, `stock`, `price`, `status`, `latitude`, `longitude`, `avatar`, `userID`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Merchants` (`id`, `stock`, `price`, `status`, `latitude`, `longitude`, `avatar`, `userID`, `createdAt`, `updatedAt`) VALUES
 (1, 5, 10000, 'active', '-6.2412908', '106.7993934', NULL, 1, '2024-07-12 06:04:52', '2024-10-16 10:00:25'),
 (2, 5, 10000, 'active', '-6.225265', '106.8019933', NULL, 3, '2024-07-12 08:58:06', '2024-08-19 05:51:03');
 UNLOCK TABLES;
@@ -132,11 +132,11 @@ UNLOCK TABLES;
 
 
 --
--- Table structure for table `orders`
+-- Table structure for table `Orders`
 --
 
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
+DROP TABLE IF EXISTS `Orders`;
+CREATE TABLE `Orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `amount` int NOT NULL,
   `totalPrice` varchar(255) NOT NULL,
@@ -154,16 +154,16 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `userID` (`userID`),
   KEY `merchantID` (`merchantID`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Users` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`merchantID`) REFERENCES `Merchants` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `Orders`
 --
-LOCK TABLES `orders` WRITE;
+LOCK TABLES `Orders` WRITE;
 
-INSERT INTO `orders` (`id`, `amount`, `totalPrice`, `address`, `address_detail`, `latitude_buyer`, `longitude_buyer`, `coffee_requested`, `done_at`, `status`, `userID`, `merchantID`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `Orders` (`id`, `amount`, `totalPrice`, `address`, `address_detail`, `latitude_buyer`, `longitude_buyer`, `coffee_requested`, `done_at`, `status`, `userID`, `merchantID`, `createdAt`, `updatedAt`) VALUES
 (1, 10, '10000', 'Jalan Prof. Soedarto', 'sebelah', '-7.0702302', '110.416262', NULL, '2024-07-12 06:59:51', 'completed', 2, 1, '2024-07-12 06:07:21', '2024-07-12 06:59:51'),
 (2, 10, '10000', 'Jalan Prof. Soedarto', 'sebelah', '-7.0702302', '110.416262', NULL, NULL, 'searching', 2, NULL, '2024-07-12 06:07:57', '2024-07-12 06:07:57'),
 (3, 10, '10000', 'Jalan Prof. Soedarto', 'sebelah', '-7.0702302', '110.416262', NULL, NULL, 'searching', 2, NULL, '2024-07-12 06:08:54', '2024-07-12 06:08:54'),
@@ -266,11 +266,11 @@ UNLOCK TABLES;
 
 
 --
--- Table structure for table `merchantcoffees`
+-- Table structure for table `merchantCoffees`
 --
 
-DROP TABLE IF EXISTS `merchantcoffees`;
-CREATE TABLE `merchantcoffees` (
+DROP TABLE IF EXISTS `merchantCoffees`;
+CREATE TABLE `merchantCoffees` (
   `id` int NOT NULL AUTO_INCREMENT,
   `merchantID` int NOT NULL,
   `coffeeID` int NOT NULL,
@@ -279,15 +279,15 @@ CREATE TABLE `merchantcoffees` (
   PRIMARY KEY (`id`),
   KEY `merchantID` (`merchantID`),
   KEY `coffeeID` (`coffeeID`),
-  CONSTRAINT `merchantCoffees_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `merchantCoffees_ibfk_2` FOREIGN KEY (`coffeeID`) REFERENCES `coffees` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `merchantCoffees_ibfk_1` FOREIGN KEY (`merchantID`) REFERENCES `Merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `merchantCoffees_ibfk_2` FOREIGN KEY (`coffeeID`) REFERENCES `Coffees` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `merchantcoffees`
+-- Dumping data for table `merchantCoffees`
 --
-LOCK TABLES `merchantcoffees` WRITE;
-INSERT INTO `merchantcoffees` (`id`, `merchantID`, `coffeeID`, `createdAt`, `updatedAt`) VALUES
+LOCK TABLES `merchantCoffees` WRITE;
+INSERT INTO `merchantCoffees` (`id`, `merchantID`, `coffeeID`, `createdAt`, `updatedAt`) VALUES
 (17, 1, 2, '2024-07-29 08:45:44', '2024-07-29 08:45:44'),
 (18, 1, 3, '2024-07-29 08:45:44', '2024-07-29 08:45:44'),
 (19, 1, 4, '2024-07-29 08:45:44', '2024-07-29 08:45:44'),
