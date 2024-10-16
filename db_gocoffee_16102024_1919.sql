@@ -71,7 +71,7 @@ CREATE TABLE `Users` (
   `email` varchar(255) NOT NULL,
   `phone_number` varchar(255) NOT NULL,
   `token` varchar(255) DEFAULT NULL,
-  `type` enum('user','merchant') NOT NULL DEFAULT 'user',
+  `type` enum('user','merchant', 'admin') NOT NULL DEFAULT 'user',
   `verified` tinyint(1) NOT NULL DEFAULT 1,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
