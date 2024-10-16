@@ -3,6 +3,7 @@ const userController = require("../controllers/userController");
 const MerchantController = require("../controllers/merchantController");
 const OrderController = require("../controllers/orderController");
 const coffeeController = require("../controllers/coffeeController");
+const adminController = require("../controllers/adminController");
 const multer = require("multer");
 
 const router = express.Router();
@@ -99,8 +100,16 @@ router.get(
   userController.verifyToken,
   OrderController.getOrderByID
 );
+router.get(
+  "/admin/orders",
+  userController.verifyToken,
+  adminController.getOrders
+);
 router.get("/coffee", coffeeController.getAllCoffee);
 router.post("/coffee", coffeeController.addCoffee);
 router.post("/coffee/delete/:id", coffeeController.deleteCoffee);
+router.post("/admin/users", adminController.getUsers)
+router.post("/admin/verifyuser", adminController.verifyUser)
+router.post("/merchant/updateLocation", MerchantController.ExactUpdateLocationMerchant);
 
 module.exports = router;

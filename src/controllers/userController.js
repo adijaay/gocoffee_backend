@@ -71,6 +71,10 @@ exports.register = (req, res) => {
           .substr(0, 10);
 
         const hashedPassword = hashPassword(password, salt);
+        var verifBool = true;
+        if(type !== "user"){
+          verifBool = false;
+        }
         User.create({
           name: req.body.name,
           email: req.body.email,
@@ -79,6 +83,7 @@ exports.register = (req, res) => {
           phone_number: req.body.phone_number,
           type: type,
           token: req.body.token,
+          verified: verifBool
         })
           .then((user) => {
             if (type === "merchant") {
@@ -114,6 +119,7 @@ exports.verifyToken = (req, res, next) => {
   });
 };
 
+
 exports.verifyMerchantToken = (req, res, next) => {
   const token = req.headers["authorization"]
     ? req.headers["authorization"].split(" ")[1]
@@ -135,7 +141,27 @@ exports.verifyMerchantToken = (req, res, next) => {
     next();
   });
 };
+exports.verifyAdminToken = (req, res, next) => {
+  const token = req.headers["authorization"]
+    ? req.headers["authorization"].split(" ")[1]
+    : null;
+  if (!token) {
+    return res
+      .status(401)
+      .send({ message: "Access denied. Token is required." });
+  }
 
+  jwt.verify(token, "starlink", (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: "Invalid token." });
+    }
+    req.user = decoded;
+    if (req.user.type !== "admin") {
+      return res.status(401).send({ message: "You're not merchant." });
+    }
+    next();
+  });
+};
 exports.getUserByID = (req, res) => {
   const { id } = req.params;
   User.findByPk(id)

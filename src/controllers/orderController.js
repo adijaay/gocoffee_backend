@@ -88,6 +88,7 @@ const { Coffee } = require("../models/coffee");
 // };
 
 exports.createOrder = async (req, res) => {
+  console.log(req.body);
   var order;
   try {
     const user = await User.findByPk(req.body.userID);
@@ -135,6 +136,7 @@ exports.createOrder = async (req, res) => {
       coffee: req.body.coffeeID,
     };
 
+    console.log(payload);
     const merchants = await merchantController.getNearbyMerchantsFunction(
       { body: payload, query: { radius: 5 } },
       res

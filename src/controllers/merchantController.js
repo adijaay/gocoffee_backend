@@ -322,3 +322,19 @@ exports.deleteCoffeeFromMerchant = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
+exports.ExactUpdateLocationMerchant = async (req, res) => {
+  try {
+    const io = req.app.get("io");
+    const stringEmit = "update-location-"+req.body.orderID;
+    const data = {
+      longitude: parseFloat(req.body.longitude),
+      latitude: parseFloat(req.body.latitude),
+    }
+    console.log(stringEmit, data);
+    io.emit(stringEmit, data);
+    return res.status(200).send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};

@@ -40,10 +40,15 @@ const User = sequelize.define("User", {
     allowNull: true,
   },
   type: {
-    type: DataTypes.ENUM("user", "merchant"),
+    type: DataTypes.ENUM("user", "merchant", "admin"),
     allowNull: false,
     defaultValue: "user",
   },
+  verified: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  }
 });
 
 module.exports = { User, sequelize };
